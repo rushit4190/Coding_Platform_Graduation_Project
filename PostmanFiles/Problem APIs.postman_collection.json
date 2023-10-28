@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "6888d27b-c382-4b8f-ba06-21673529b44f",
+		"name": "Problem APIs",
+		"description": "Set of APIs to deal with retrieval of problem description, editorial and submissions based on problem id",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30201486"
+	},
+	"item": [
+		{
+			"name": "Problem Description",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionToken",
+						"value": "3e1b6f8a-ee29-41a1-a8db-00c160fb90e0",
+						"description": "Guest Session token stored in device memory",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/description",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problems",
+						":problemId",
+						"description"
+					],
+					"variable": [
+						{
+							"key": "problemId",
+							"value": "f8853914-8cac-4975-b198-780eed531dfa",
+							"description": "Problem Id of the required problem"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Connection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Problem Editorial",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "sessionToken",
+						"value": "c0b196a9-1474-45ab-8fe0-2cebd2df2114",
+						"description": "Guest Session token stored in device memory",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/editorial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problems",
+						":problemId",
+						"editorial"
+					],
+					"variable": [
+						{
+							"key": "problemId",
+							"value": "f8853914-8cac-4975-b198-780eed531dfa",
+							"description": "Problem Id of the required problem"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sample Post request to check",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/sample_post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"sample_post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Problem Submissions for User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionToken",
+						"value": "278fb17e-ce92-4bf2-94cd-4d7d67eb5e74",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/submissions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problems",
+						":problemId",
+						"submissions"
+					],
+					"variable": [
+						{
+							"key": "problemId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Problem to DB (only for development)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Time Travel\",\r\n    \"description\":\"Berland is a country with ancient history, where roads were built and destroyed for centuries. It is known that there always were n\\n cities in Berland. You also have records of t\\n key moments in the history of the country, numbered from 1\\n to t\\n. Each record contains a list of bidirectional roads between some pairs of cities, which could be used for travel in Berland at a specific moment in time.\\n\\nYou have discovered a time machine that transports you between key moments. Unfortunately, you cannot choose what point in time to end up at, but you know the order consisting of k\\n moments in time ai\\n, in which the machine will transport you. Since there is little time between the travels, when you find yourself in the next key moment in time (including after the last time travel), you can travel on at most one existing road at that moment, coming out from the city you were in before time travel.\\n\\nCurrently, you are in city 1\\n, and the time machine has already transported you to moment a1\\n. You want to reach city n\\n as quickly as possible. Determine the minimum number of time travels, including the first one, that you need to make in order to reach city n\\n.\\n\\nInput\\nThe first line contains two integers n\\n and t\\n (2≤n≤2⋅105,1≤t≤2⋅105\\n) — the number of cities in Berland and the number of records about key moments in history. Then follows the description of each of the t\\n records.\\n\\nThe first line of each record description contains a single integer mi\\n (0≤mi≤min(n(n−1)2,2⋅105)\\n) — the number of roads in the i\\n-th record.\\n\\nEach of the next mi\\n lines contains two integers vj\\n and uj\\n (1≤vj,uj≤n\\n, vj≠uj\\n) — the numbers of cities connected by the j\\n-th road in the i\\n-th key moment in history.\\n\\nThe next line contains a single integer k\\n (1≤k≤2⋅105\\n) — the number of time moments between which movements will occur.\\n\\nThe next line contains k\\n integers a1,a2,…,ak\\n (1≤ai≤t\\n) — the time moments at which you will be after each movement.\\n\\nIt is guaranteed that the sum of mi\\n does not exceed 2⋅105\\n. It is guaranteed that each unordered pair (u,v)\\n occurs in the road description for one record no more than once.\\n\\nOutput\\nOutput a single integer — the minimum number of time travels required to reach city n\\n from city 1\\n, or −1\\n if it is impossible.\\n\\nNote that movement to time moment a1\\n is also considered a movement.\" ,\r\n    \"editorial\" : \"Not Available\",\r\n    \"alltestCases\": \"5 2\\n4\\n1 2\\n2 3\\n3 4\\n4 5\\n2\\n2 3\\n3 5\\n6\\n2 1 2 1 2 1\\n\",\r\n    \"expectedOutput\":\"5\\n\" ,\r\n    \"tags\" : \"codeforces\",\r\n    \"difficulty\" : \"easy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/addproblem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"addproblem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all problems via pagination",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionToken",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problems/all?pageNo=1&pageSize=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problems",
+						"all"
+					],
+					"query": [
+						{
+							"key": "pageNo",
+							"value": "1",
+							"description": "Enter the page no to visit. By default it is 0"
+						},
+						{
+							"key": "pageSize",
+							"value": "3",
+							"description": "Enter the size of page required. By default it is 10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

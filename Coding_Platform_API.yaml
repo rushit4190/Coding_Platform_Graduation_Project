@@ -1,0 +1,404 @@
+openapi: 3.0.3
+info:
+  title: Coding_Platform_Project
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/codingplatform/v1/
+paths:
+  /problems/all:
+    get:
+      summary: Get a list of all problems
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: pageNo
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: pageSize
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemListResponse"
+  
+  /problems/{problemId}/description:
+    get:
+      summary: Get the description of a specific problem
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: problemId
+          in: path
+          description: The unique identifier of the problem
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              example: Your problem description here
+        '400':
+          description: Invalid problem id
+
+  /problems/{problemId}/editorial:
+    get:
+      summary: Get the editorial of a specific problem
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: problemId
+          in: path
+          description: The unique identifier of the problem
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              example: Your problem editorial here
+        '400':
+          description: Invalid problem id
+
+  /problems/{problemId}/submissions:
+    get:
+      summary: Get list of problem submissions for the specific guest user
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: problemId
+          in: path
+          description: The unique identifier of the problem
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemSubmissionResponse"
+        '400':
+          description: Invalid problem Id
+
+  /problemcollections/:
+    get:
+      summary: Get all problem collections list
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemCollectionResponse"
+        '204':
+          description: No Content
+
+
+  /problemcollections/{collectionId}:
+    get:
+      summary: Get list of problems in a collection
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: collectionId
+          in: path
+          description: The unique identifier of the problem collection
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemCollectionListResponse"
+        '400':
+          description: Invalid Collection id
+
+  /problems/{problemId}/submit:
+    post:
+      summary: Submit a problem solution to Judge0 for evaluation
+      parameters:
+        - name: sessionToken
+          in: header
+          description: The session token (optional)
+          required: false
+          schema:
+            type: string
+        - name: problemId
+          in: path
+          description: The unique identifier of the problem
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The request body containing the details of solution to submit
+        content:
+          application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitProblemRequest"
+      responses:
+        '201':
+          description: Solution submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmissionDetailResponse"
+        '400':
+          description: Invalid request check content for more info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmissionErrorDetailResponse"
+        '500':
+          description: Server error while processing check content for more info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmissionErrorDetailResponse"
+ 
+
+components:
+  schemas:
+
+    Problem:
+      type: object
+      properties:
+        problemId:
+          type: string
+          format: uuid
+          description: The unique identifier of the problem
+        title:
+          type: string
+          description: The title of the problem
+        description:
+          type: string
+          format: text
+          description: The description of the problem
+        editorial:
+          type: string
+          format: text
+          description: The editorial content of the problem
+        allTestCases:
+          type: string
+          format: text
+          description: All test cases for the problem
+        customTestCases:
+          type: string
+          format: text
+          description: Custom test cases for the problem 
+        expectedOutput:
+          type: string
+          format: text
+          description: Expected output for the problem
+        customTestOutput:
+          type: string
+          format: text
+          description: Custom test output 
+        tags:
+          type: string
+          description: Tags for the problem 
+        difficulty:
+          type: string
+          description: The difficulty level of the problem
+      required:
+        - title
+        - description
+        - allTestCases
+        - difficulty
+        
+    Submission:
+      type: object
+      properties:
+        submissionId:
+          type: string
+          format: uuid
+          description: The unique identifier of the submission
+        problemId:
+          type: string
+          description: The unique identifier of the problem associated with the submission
+        title:
+          type: string
+          description: The title of the submission
+        status:
+          type: string
+          description: The status of the submission
+        submissionTimeStamp:
+          type: string
+          format: date-time
+          description: The timestamp of the submission
+        userId:
+          type: string
+          description: The unique identifier of the user who submitted the solution
+        submissionCode:
+          type: string
+          format: text
+          description: The code submitted for the problem
+        programmingLanguage:
+          type: string
+          description: The programming language used for the submission
+        submissionRuntime:
+          type: number
+          description: The runtime of the submission
+      required:
+        - problemId
+        - title
+        - status
+        - submissionTimeStamp
+        - userId
+        - submissionCode
+        - programmingLanguage
+        - submissionRuntime
+        
+    ProblemCollection:
+      type: object
+      properties:
+        collectionId:
+          type: string
+          format: uuid
+          description: The unique identifier of the problem collection
+        title:
+          type: string
+          description: The title of the problem collection
+        description:
+          type: string
+          format: text
+          description: The description of the problem collection
+        image:
+          type: string
+          format: byte
+          description: The image associated with the problem collection (in binary form)
+      required:
+        - title
+        - description
+
+    ProblemSubmissionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message associated with the response
+        Submission:
+          type: array
+          items:
+            $ref: '#/components/schemas/Submission'
+          description: A list of problem submissions
+      required:
+        - message
+
+    ProblemListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Problem'
+
+    ProblemCollectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message associated with the response
+        problem_collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemCollection'
+          description: A list of collection
+      required:
+        - message
+
+
+    ProblemCollectionListResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message associated with the response
+        problem_collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemListResponse'
+          description: A list of problems in the collection
+      required:
+        - message
+    
+    SubmitProblemRequest:
+      type: object
+      properties:
+        source_code:
+          type: string
+          description: Code to be submitted for evaluation
+        language_id:
+          type: integer
+          description: Submission code language's language_id, required by Judge 0
+      required:
+        - source_code
+        - language_id
+
+    SubmissionDetailResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message associated with the response
+        submission:
+          type: object
+          item:
+            $ref: '#/components/schemas/Submission'
+          description: Submitted solution with status
+
+    SubmissionErrorDetailResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Depending on type of error message content will vary.
+        
+      
+    
+    
+
+    

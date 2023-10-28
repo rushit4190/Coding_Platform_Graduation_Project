@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "2a59fffe-be02-459b-8632-942255ef9e6d",
+		"name": "Problem Collection API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30201486"
+	},
+	"item": [
+		{
+			"name": "All Problem-Collections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problemcollections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problemcollections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get problems from a collection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionToken",
+						"value": "278fb17e-ce92-4bf2-94cd-4d7d67eb5e74",
+						"description": "Guest session Token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problemcollections/:collectionId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problemcollections",
+						":collectionId"
+					],
+					"variable": [
+						{
+							"key": "collectionId",
+							"value": "d5a0d17d-9c0c-48ea-aa61-5ca636f7a883"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add problems to collection (only for development)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/codingplatform/v1/problemcollections/:collectionId?problemId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"codingplatform",
+						"v1",
+						"problemcollections",
+						":collectionId"
+					],
+					"query": [
+						{
+							"key": "problemId",
+							"value": null
+						}
+					],
+					"variable": [
+						{
+							"key": "collectionId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
