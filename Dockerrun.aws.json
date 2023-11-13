@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "rushit4197/coding-platform-nextleap",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8080"
+    }
+  ]
+}

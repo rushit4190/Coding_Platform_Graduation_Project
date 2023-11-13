@@ -37,18 +37,17 @@ public class SessionManagementService {
 
     private String createSession(){
         String sessionToken = UUID.randomUUID().toString();
-        String guestId = UUID.randomUUID().toString();
 
         User user = new User();
-        user.setUserId(guestId);
+
         user.setFirstName("Guest");
         user.setSessionToken(sessionToken);
         user.setSessionCreation(System.currentTimeMillis());
-
-        System.out.println("user created with guest id " + guestId + " Session token " + sessionToken );
-
         userRepository.save(user);
 //        System.out.println("user detail saved in repo ");
+        System.out.println("user created with guest id " + user.getUserId() + " Session token " + sessionToken );
+
+
 
         return sessionToken;
     }

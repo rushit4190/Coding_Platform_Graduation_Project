@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "ae098bb1-7a7c-4863-b7e7-d167978095e9",
 		"name": "Submission APIs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "30201486"
 	},
 	"item": [
@@ -20,7 +20,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"source_code\":\"#include <iostream>\\nint main() {\\n    std::string name;\\n    std::cin >> name;\\n    if (name == \\\"X\\\") {\\n        std::cout << \\\"hello \\\" << name << std::endl;\\n    }\\n}\",\r\n  \"language_id\": 52,\r\n  \"stdin\" : \"world\"\r\n}",
+					"raw": "{\r\n      \"source_code\":\"import java.io.*;\\npublic class Main{\\n    public static void main(String[] args) throws IOException{\\n        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));\\n        \\n        //line1 input\\n        int t = Integer.parseInt(in.readLine());\\n        //line 2 and 3 input\\n        for(int T = 1; T <= t; T++){\\n            int n = Integer.parseInt(in.readLine());\\n            String bin = in.readLine();\\n \\n            // count number of 0s and store the indexes of 0s from right\\n            int cnt = 0;int a = 0;\\n            long idx[] = new long[n];\\n            for(int i = bin.length()-1; i >= 0; i--){\\n                if(bin.charAt(i) == '0'){\\n                    idx[a++] = i;\\n                    cnt++;\\n                }\\n            }\\n            \\n            long arr[] = new long[n+1];\\n            for(int i = cnt; i<n; i++){\\n                arr[i] = -1;\\n            }\\n \\n            long total = 0;\\n            for(int i = 1; i <= cnt; i++){\\n                total += (bin.length()-i) - idx[i-1];\\n                arr[i-1] = total ; \\n            }\\n \\n            for(int i = 0; i < n; i++)\\n                System.out.print(arr[i]+\\\" \\\");\\n            System.out.println();\\n        }   \\n    }\\n}\",\r\n  \"language_id\": 62\r\n \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -28,12 +28,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/submit",
+					"raw": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/problems/:problemId/submit",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"coding-platform-project-env-1",
+						"eba-zv7a7rpd",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"codingplatform",
 						"v1",
@@ -44,7 +47,7 @@
 					"variable": [
 						{
 							"key": "problemId",
-							"value": "1",
+							"value": "573600a6-baaf-40c4-a329-0d7580a11f20",
 							"description": "Enter the problem Id"
 						}
 					]

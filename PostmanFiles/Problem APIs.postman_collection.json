@@ -3,7 +3,7 @@
 		"_postman_id": "6888d27b-c382-4b8f-ba06-21673529b44f",
 		"name": "Problem APIs",
 		"description": "Set of APIs to deal with retrieval of problem description, editorial and submissions based on problem id",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "30201486"
 	},
 	"item": [
@@ -14,18 +14,21 @@
 				"header": [
 					{
 						"key": "sessionToken",
-						"value": "3e1b6f8a-ee29-41a1-a8db-00c160fb90e0",
+						"value": "278fb17e-ce92-4bf2-94cd-4d7d67eb5e74",
 						"description": "Guest Session token stored in device memory",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/description",
+					"raw": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/problems/:problemId/description",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"coding-platform-project-env-1",
+						"eba-zv7a7rpd",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"codingplatform",
 						"v1",
@@ -49,19 +52,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"codingplatform",
-						"v1",
-						""
-					]
-				}
+				"url": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/"
 			},
 			"response": []
 		},
@@ -78,18 +69,21 @@
 					},
 					{
 						"key": "sessionToken",
-						"value": "c0b196a9-1474-45ab-8fe0-2cebd2df2114",
+						"value": "278fb17e-ce92-4bf2-94cd-4d7d67eb5e74",
 						"description": "Guest Session token stored in device memory",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/editorial",
+					"raw": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/problems/:problemId/editorial",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"coding-platform-project-env-1",
+						"eba-zv7a7rpd",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"codingplatform",
 						"v1",
@@ -113,19 +107,7 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/sample_post",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"codingplatform",
-						"v1",
-						"sample_post"
-					]
-				}
+				"url": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/sample_post"
 			},
 			"response": []
 		},
@@ -141,12 +123,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/problems/:problemId/submissions",
+					"raw": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/problems/:problemId/submissions",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"coding-platform-project-env-1",
+						"eba-zv7a7rpd",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"codingplatform",
 						"v1",
@@ -178,19 +163,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/addproblem",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"codingplatform",
-						"v1",
-						"addproblem"
-					]
-				}
+				"url": "http://localhost:8080/codingplatform/v1/addproblem"
 			},
 			"response": []
 		},
@@ -201,17 +174,20 @@
 				"header": [
 					{
 						"key": "sessionToken",
-						"value": "",
+						"value": "278fb17e-ce92-4bf2-94cd-4d7d67eb5e74",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/codingplatform/v1/problems/all?pageNo=1&pageSize=3",
+					"raw": "http://coding-platform-project-env-1.eba-zv7a7rpd.us-east-1.elasticbeanstalk.com/codingplatform/v1/problems/all?pageNo=1&pageSize=3",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"coding-platform-project-env-1",
+						"eba-zv7a7rpd",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"codingplatform",
 						"v1",
